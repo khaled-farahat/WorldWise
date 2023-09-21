@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import db from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
 
 import styles from "./City.module.css";
 import type { City } from "../types";
+import useCities from "../hooks/useCities";
+
+import Spinner from "./Spinner";
+import BackButton from "./BackButton";
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en", {
@@ -18,56 +19,51 @@ const formatDate = (date: Date) =>
 function City() {
   const { id } = useParams();
 
-  const [city, setCity] = useState<City | null>(null);
+  const { currentCity, getCity, isLoading } = useCities();
 
   useEffect(() => {
-    const getCity = async () => {
-      if (!id) return;
-      const cityRef = doc(db, "cities", id!);
-      const citySnapshot = await getDoc(cityRef);
-      const cityData = citySnapshot.data();
-      setCity(cityData as City);
-    };
-    try {
-      getCity();
-    } catch {
-      alert("There was a problem loading the city.");
-    }
+    if (id) getCity(id);
   }, [id]);
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.city}>
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{city?.emoji}</span> {city?.cityName}
+          <span>{currentCity?.emoji}</span> {currentCity?.cityName}
         </h3>
       </div>
 
       <div className={styles.row}>
-        <h6>You went to {city?.cityName} on</h6>
-        {city?.date.toDate() && <p>{formatDate(city.date.toDate())}</p>}
+        <h6>You went to {currentCity?.cityName} on</h6>
+        {currentCity?.date.toDate() && (
+          <p>{formatDate(currentCity.date.toDate())}</p>
+        )}
       </div>
 
-      {city?.notes && (
+      {currentCity?.notes && (
         <div className={styles.row}>
           <h6>Your notes</h6>
-          <p>{city?.notes}</p>
+          <p>{currentCity?.notes}</p>
         </div>
       )}
 
       <div className={styles.row}>
         <h6>Learn more</h6>
         <a
-          href={`https://en.wikipedia.org/wiki/${city?.cityName}`}
+          href={`https://en.wikipedia.org/wiki/${currentCity?.cityName}`}
           target="_blank"
           rel="noreferrer"
         >
-          Check out {city?.cityName} on Wikipedia &rarr;
+          Check out {currentCity?.cityName} on Wikipedia &rarr;
         </a>
       </div>
 
-      <div>{/* <ButtonBack /> */}</div>
+      <div>
+        <BackButton />
+      </div>
     </div>
   );
 }
