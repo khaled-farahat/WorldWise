@@ -1,6 +1,13 @@
-import styles from "./City.module.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const formatDate = (date: any) =>
+import db from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+import styles from "./City.module.css";
+import type { City } from "../types";
+
+const formatDate = (date: Date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "long",
@@ -9,51 +16,58 @@ const formatDate = (date: any) =>
   }).format(new Date(date));
 
 function City() {
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
+  const { id } = useParams();
 
-  const { cityName, emoji, date, notes } = currentCity;
+  const [city, setCity] = useState<City | null>(null);
+
+  useEffect(() => {
+    const getCity = async () => {
+      if (!id) return;
+      const cityRef = doc(db, "cities", id!);
+      const citySnapshot = await getDoc(cityRef);
+      const cityData = citySnapshot.data();
+      setCity(cityData as City);
+    };
+    try {
+      getCity();
+    } catch {
+      alert("There was a problem loading the city.");
+    }
+  }, [id]);
 
   return (
     <div className={styles.city}>
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{emoji}</span> {cityName}
+          <span>{city?.emoji}</span> {city?.cityName}
         </h3>
       </div>
 
       <div className={styles.row}>
-        <h6>You went to {cityName} on</h6>
-        <p>{formatDate(date || null)}</p>
+        <h6>You went to {city?.cityName} on</h6>
+        {city?.date.toDate() && <p>{formatDate(city.date.toDate())}</p>}
       </div>
 
-      {notes && (
+      {city?.notes && (
         <div className={styles.row}>
           <h6>Your notes</h6>
-          <p>{notes}</p>
+          <p>{city?.notes}</p>
         </div>
       )}
 
       <div className={styles.row}>
         <h6>Learn more</h6>
         <a
-          href={`https://en.wikipedia.org/wiki/${cityName}`}
+          href={`https://en.wikipedia.org/wiki/${city?.cityName}`}
           target="_blank"
           rel="noreferrer"
         >
-          Check out {cityName} on Wikipedia &rarr;
+          Check out {city?.cityName} on Wikipedia &rarr;
         </a>
       </div>
 
-      <div>
-        <ButtonBack />
-      </div>
+      <div>{/* <ButtonBack /> */}</div>
     </div>
   );
 }

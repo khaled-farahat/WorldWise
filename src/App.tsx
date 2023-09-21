@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import db from "./firebase";
@@ -11,6 +11,9 @@ import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
+import CountryList from "./components/CountryList";
+import CityComponent from "./components/City";
+import Form from "./components/Form";
 import type { City } from "./types";
 
 const App = () => {
@@ -22,7 +25,10 @@ const App = () => {
     const getCities = async () => {
       const citiesCol = collection(db, "cities");
       const citiesSnapshot = await getDocs(citiesCol);
-      const citiesList = citiesSnapshot.docs.map((doc) => doc.data());
+      const citiesList = citiesSnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
       setCities(citiesList as City[]);
     };
     try {
@@ -44,14 +50,18 @@ const App = () => {
         <Route path="app" element={<AppLayout />}>
           <Route
             index
-            element={<CityList cities={cities} isLoading={isLoading} />}
+            element={<Navigate replace to='cities' />}
           />
           <Route
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="countries" element={<h1>Countries</h1>} />
-          <Route path="form" element={<h1>Form</h1>} />
+          <Route path="cities/:id" element={<CityComponent />} />
+          <Route
+            path="countries"
+            element={<CountryList cities={cities} isLoading={isLoading} />}
+          />
+          <Route path="form" element={<Form />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

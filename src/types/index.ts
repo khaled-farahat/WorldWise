@@ -7,4 +7,5 @@ export type City = {
   date: Timestamp;
   notes: string;
   position: GeoPoint;
+  id: string;
 };
