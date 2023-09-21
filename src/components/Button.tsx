@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 
 type Props = {
   children: React.ReactNode;
-  onClick: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent) => void;
   type: string;
 };
 

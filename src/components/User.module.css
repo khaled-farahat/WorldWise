@@ -18,6 +18,7 @@
 .user img {
   border-radius: 100px;
   height: 4rem;
+  width: 4rem;
 }
 
 .user button {
