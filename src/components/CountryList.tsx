@@ -2,14 +2,12 @@ import Spinner from "./Spinner";
 import styles from "./CountryList.module.css";
 import Message from "./Message";
 import CountryItem from "./CountryItem";
-import type { City } from "../types";
 
-type Props = {
-  cities: City[];
-  isLoading: boolean;
-};
+import useCities from "../hooks/useCities";
 
-const CountryList = ({ cities, isLoading }: Props) => {
+const CountryList = () => {
+  const { cities, isLoading } = useCities();
+
   if (isLoading) return <Spinner />;
 
   if (!cities.length)
@@ -17,10 +15,14 @@ const CountryList = ({ cities, isLoading }: Props) => {
       <Message message="Add you first city by clicking on a city on the map" />
     );
 
-  const countries = [...new Set(cities.map((city) => ({
-    country: city.country,
-    emoji: city.emoji,
-  })))];
+  const countries = [
+    ...new Set(
+      cities.map((city) => ({
+        country: city.country,
+        emoji: city.emoji,
+      }))
+    ),
+  ];
 
   return (
     <ul className={styles.countryList}>
