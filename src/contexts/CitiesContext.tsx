@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useCallback, useEffect, useReducer } from "react";
 
 import db from "../firebase";
 import {
@@ -130,25 +130,28 @@ const CitiesProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const getCity = async (id: string) => {
-    if(currentCity?.id === id) return;
+  const getCity = useCallback(
+    async (id: string) => {
+      if (currentCity?.id === id) return;
 
-    dispatch({ type: "loading" });
-    try {
-      const cityRef = doc(db, "cities", id!);
-      const citySnapshot = await getDoc(cityRef);
-      const cityData = citySnapshot.data();
-      dispatch({
-        type: "city/loaded",
-        payload: { ...cityData, id: citySnapshot.id } as City,
-      });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "There was a problem loading the city.",
-      });
-    }
-  };
+      dispatch({ type: "loading" });
+      try {
+        const cityRef = doc(db, "cities", id!);
+        const citySnapshot = await getDoc(cityRef);
+        const cityData = citySnapshot.data();
+        dispatch({
+          type: "city/loaded",
+          payload: { ...cityData, id: citySnapshot.id } as City,
+        });
+      } catch {
+        dispatch({
+          type: "rejected",
+          payload: "There was a problem loading the city.",
+        });
+      }
+    },
+    [currentCity?.id]
+  );
 
   const createCity = async (city: City) => {
     dispatch({ type: "loading" });
