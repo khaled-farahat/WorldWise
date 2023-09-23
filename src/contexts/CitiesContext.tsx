@@ -9,7 +9,7 @@ import {
   addDoc,
   deleteDoc,
 } from "firebase/firestore";
-import type { City } from "../types";
+import type { City, CitiesAction as Action } from "../types";
 
 type CitiesContextType = {
   cities: City[];
@@ -19,11 +19,6 @@ type CitiesContextType = {
   getCity: (id: string) => void;
   createCity: (city: City) => void;
   deleteCity: (id: string) => void;
-};
-
-type Action = {
-  type: string;
-  payload?: City[] | string | City;
 };
 
 type State = {
@@ -51,31 +46,29 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         isLoading: false,
-        cities: action.payload as City[],
+        cities: action.payload,
       };
 
     case "city/loaded":
       return {
         ...state,
         isLoading: false,
-        currentCity: action.payload as City,
+        currentCity: action.payload,
       };
 
     case "city/created":
       return {
         ...state,
         isLoading: false,
-        cities: [...state.cities, action.payload as City],
-        currentCity: action.payload as City,
+        cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
 
     case "city/deleted":
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter(
-          (city) => city.id !== (action.payload as City).id
-        ),
+        cities: state.cities.filter((city) => city.id !== action.payload.id),
         currentCity: null,
       };
 
@@ -87,7 +80,8 @@ function reducer(state: State, action: Action): State {
       };
 
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      // throw new Error(`Unhandled action type: ${action.type}`);
+      return state;
   }
   // return state;
 }

@@ -9,3 +9,11 @@ export type City = {
   position: GeoPoint;
   id: string;
 };
+
+export type CitiesAction =
+  | { type: "loading" }
+  | { type: "cities/loaded"; payload: City[] }
+  | { type: "city/loaded"; payload: City }
+  | { type: "city/created"; payload: City }
+  | { type: "city/deleted"; payload: City }
+  | { type: "rejected"; payload: string };

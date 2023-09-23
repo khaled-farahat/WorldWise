@@ -15,14 +15,21 @@ const CountryList = () => {
       <Message message="Add you first city by clicking on a city on the map" />
     );
 
-  const countries = [
-    ...new Set(
-      cities.map((city) => ({
-        country: city.country,
-        emoji: city.emoji,
-      }))
-    ),
-  ];
+  const countries: { country: string; emoji: string }[] = cities.reduce(
+    (acc: { country: string; emoji: string }[], city) => {
+      const existingCountry = acc.find(
+        (country) => country.country === city.country
+      );
+      if (!existingCountry) {
+        acc.push({
+          country: city.country,
+          emoji: city.emoji,
+        });
+      }
+      return acc;
+    },
+    []
+  );
 
   return (
     <ul className={styles.countryList}>

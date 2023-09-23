@@ -31,17 +31,19 @@ const initialState: State = {
   isAuthenticated: false,
 };
 
-type Action = {
-  type: string;
-  payload?: object;
-};
+type Action =
+  | {
+      type: "login";
+      payload: User;
+    }
+  | { type: "logout" };
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "login":
       return {
         ...state,
-        user: action.payload as User,
+        user: action.payload,
         isAuthenticated: true,
       };
     case "logout":
