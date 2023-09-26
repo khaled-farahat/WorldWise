@@ -3,27 +3,28 @@
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [Introduction](#introduction)
-- [Features](#features)
-- [Demo](#demo)
-  - [Home Page](#home-page)
-  - [Pricing Page](#pricing-page)
-  - [About Page](#about-page)
-  - [Login Page](#login-page)
-  - [Main App Page](#main-app-page)
-  - [Countries Section](#countries-section)
-  - [Add New City Section](#add-new-city-section)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
+- [👋Introduction](#introduction)
+- [🌟Features](#features)
+- [🚀 Live Demo](#-live-demo)
+- [📸 Screenshots](#-screenshots)
+  - [🏠Home Page](#home-page)
+  - [💲Pricing Page](#pricing-page)
+  - [📖About Page](#about-page)
+  - [🔑Login Page](#login-page)
+  - [📱Main App Page](#main-app-page)
+  - [🌐Countries Section](#countries-section)
+  - [➕Add New City Section](#add-new-city-section)
+- [🛠️Technologies Used](#️technologies-used)
+- [🏁Getting Started](#getting-started)
+- [⬇️Installation](#️installation)
+- [🔧Usage](#usage)
+- [📄License](#license)
 
-## Introduction
+## 👋Introduction
 
 WorldWise is an app that enables you save the places where you have been and the places you want to go. It is a simple app that allows you to create a list of places you have been and places you want to go. You can also add notes to each place. It is a great way to keep track of your travels and plan your next trip.
 
-## Features
+## 🌟Features
 
 - Create a list of places you have been and places you want to go.
 - Add notes to each place.
@@ -31,52 +32,61 @@ WorldWise is an app that enables you save the places where you have been and the
 - smoothly select the country you want to visit and add it to your list.
 - remove cities from your list.
 
-## Demo
+## 🚀 Live Demo
 
-### Home Page
+[🌍WorldWise](https://6512bc1f24fcb10066f3f7ff--classy-tapioca-ee990e.netlify.app/)
+
+##  📸 Screenshots
+
+### 🏠Home Page
 
 ![Home Page](./screenshots/Home.png)
 
-### Pricing Page
+### 💲Pricing Page
 
 ![Pricing Page](./screenshots/Pricing.png)
 
-### About Page
+### 📖About Page
 
 ![About Page](./screenshots/About.png)
 
-### Login Page
+### 🔑Login Page
 
 ![Login Page](./screenshots/Login.png)
 
-### Main App Page
+### 📱Main App Page
 
 ![Main Page](./screenshots/MainApp.png)
 
-### Countries Section
+### 🌐Countries Section
 
 ![Countries Section](./screenshots/Countries.png)
 
-### Add New City Section
+### ➕Add New City Section
 
 ![Add New City Section](./screenshots/AddCity.png)
 
-## Technologies Used
+## 🛠️Technologies Used
 
 The WorldWise project utilizes the following technologies:
 
-- [React](https://reactjs.org/)
-- [React Router](https://reactrouter.com/)
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="React" width="40" height="40"/> &nbsp; &nbsp;[React](https://reactjs.org/)
+
+- <img src="./screenshots/react-router-svgrepo-com.svg" alt="Firebase" width="40" height="40"/> &nbsp; &nbsp;[React Router](https://reactrouter.com/)
+
 - [React leaflet](https://react-leaflet.js.org/)
-- [firebase](https://firebase.google.com/)
-- [TypeScript](https://www.typescriptlang.org/)
+
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain-wordmark.svg" alt="Firebase" width="40" height="40"/> &nbsp; &nbsp; [Firebase](https://firebase.google.com/)
+
+- <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> &nbsp; &nbsp;[TypeScript](https://www.typescriptlang.org/)
+
 - CSS Modules
 
-## Getting Started
+## 🏁Getting Started
 
-To set up the Bloggy project locally, follow the instructions below.
+To set up the WorldWise project locally, follow the instructions below.
 
-## Installation
+## ⬇️Installation
 
 1. Clone the repository:
 
@@ -91,7 +101,7 @@ To set up the Bloggy project locally, follow the instructions below.
    npm install
    ```
 
-## Usage
+## 🔧Usage
 
 1. Run the development server:
 
@@ -105,6 +115,6 @@ To set up the Bloggy project locally, follow the instructions below.
 
 1. Start adding your cities to the list
 
-## License
+## 📄License
 
-The WorldWise project is open-source and is licensed under the [MIT License](LICENSE).
+The WorldWise project is open-source and is licensed under the [MIT License](LICENSE) .
