@@ -34,7 +34,7 @@ WorldWise is an app that enables you save the places where you have been and the
 
 ## 🚀 Live Demo
 
-[🌍WorldWise](https://6512bc1f24fcb10066f3f7ff--classy-tapioca-ee990e.netlify.app/)
+[🌍WorldWise](https://world-wise-ts.netlify.app/)
 
 ##  📸 Screenshots
 
