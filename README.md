@@ -74,11 +74,11 @@ The WorldWise project utilizes the following technologies:
 
 - <img src="./screenshots/react-router-svgrepo-com.svg" alt="Firebase" width="40" height="40"/> &nbsp; &nbsp;[React Router](https://reactrouter.com/)
 
-- [React leaflet](https://react-leaflet.js.org/)
-
 - <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain-wordmark.svg" alt="Firebase" width="40" height="40"/> &nbsp; &nbsp; [Firebase](https://firebase.google.com/)
 
 - <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> &nbsp; &nbsp;[TypeScript](https://www.typescriptlang.org/)
+
+- [React leaflet](https://react-leaflet.js.org/)
 
 - CSS Modules
 
